@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Lab 2</title>
-    <!-- Add your external CSS link here -->
-    <link rel="stylesheet" href="./style.css">
+
+<head>
+  <meta charset="utf-8">
+  <title>Lab 2</title>
+  <!-- Add your external CSS link here -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <h1>Weather APP</h1>
+  <p>Enter the city:</p>
+
+  <form id="myForm" action="/" method="post">
+    <input type="text" id="cityInput" name="city" placeholder="Enter City" />
+    <!-- <button type="submit">Submit</button> -->
+  </form>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var cityValue = document.getElementById("cityInput").value;
+        myFunction(cityValue);
+      });
+
+      function myFunction(city) {
+
+        const data = { city: city };
+
+        fetch("http://localhost:8002", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+          })
+          .catch((error) => {
+            console.log(error)
+          });
 
 
-    <script>
-      // MY CODE 
-
-      
 
 
+      }
+    });
+  </script>
+</body>
 
-    </script>
-
-
-    
-  </head>
-  <body>
-	<h1>Weather APP</h1>
-	<p>Enter the city:</p>
-  <form action="/" method="post">
-    <input type="text" name="city" placeholder="Enter City"  />
-	  <button type="submit">this</button>
-</form>
-
-  </body>
 </html>
