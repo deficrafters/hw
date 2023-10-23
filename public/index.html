@@ -17,6 +17,8 @@
     <!-- <button type="submit">Submit</button> -->
   </form>
 
+  <h4>Result : <p id="showValue"></p></h4>
+
   <script>
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -40,6 +42,9 @@
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
+
+
+            document.getElementById("showValue").innerHTML="Wind : "+data.clouds.all
           })
           .catch((error) => {
             console.log(error)
