@@ -34,7 +34,7 @@ app.post("/", (request, response) => {
   });
 
   req.end(function (res) {
-    if (res.error) throw new Error(res.error);
+    // if (res.error) throw new Error(res.error);
     response.send(res.body);
   });
 });

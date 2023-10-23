@@ -17,7 +17,13 @@
     <!-- <button type="submit">Submit</button> -->
   </form>
 
+  <h4 id="errorinfo"></h4>
+  <h4>Result : <p id="showValue4"></p></h4>
   <h4>Result : <p id="showValue"></p></h4>
+  <h4>Result : <p id="showValue1"></p></h4>
+  <h4>Result : <p id="showValue2"></p></h4>
+  <h4>Result : <p id="showValue3"></p></h4>
+ 
 
   <script>
 
@@ -30,7 +36,10 @@
 
       function myFunction(city) {
 
+        document.getElementById("errorinfo").innerHTML=''
+        
         const data = { city: city };
+
 
         fetch("http://localhost:8002", {
           method: 'POST',
@@ -44,10 +53,16 @@
             console.log(data)
 
 
-            document.getElementById("showValue").innerHTML="Wind : "+data.clouds.all
+            document.getElementById("showValue").innerHTML="Clouds : "+data.clouds.all
+            document.getElementById("showValue1").innerHTML="Weather deg : "+data.wind.deg
+            document.getElementById("showValue2").innerHTML="Weather gust : "+data.wind.gust
+            document.getElementById("showValue3").innerHTML="Weather speed : "+data.wind.speed
+            document.getElementById("showValue4").innerHTML="Weather speed : "+data.weather[0].description
           })
           .catch((error) => {
             console.log(error)
+            document.getElementById("errorinfo").innerHTML='Invalid error from search bar'
+        
           });
 
 
